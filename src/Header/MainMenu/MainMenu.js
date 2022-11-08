@@ -17,9 +17,6 @@ const MainMenu = () => {
               <Nav.Link href="#"><FaTwitter></FaTwitter></Nav.Link>
               <Nav.Link href="#"><FaLinkedinIn></FaLinkedinIn></Nav.Link>
               <Nav.Link href="#"><FaYoutube></FaYoutube></Nav.Link>
-              <Nav.Link href="tel:8801623232323">
-                <FaPhoneAlt></FaPhoneAlt> +8801623232323
-              </Nav.Link>
             </Nav>
             <Nav className='ms-auto'>
               <Nav.Link href="#features">My Reviews</Nav.Link>
@@ -39,10 +36,16 @@ const MainMenu = () => {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mx-auto">
               <Nav.Link href="#">Home</Nav.Link>
-              <Nav.Link href="#">Practice Areas</Nav.Link>
+              <Nav.Link href="#">Legal Services</Nav.Link>
               <Nav.Link href="#">Blog</Nav.Link>
               <Nav.Link href="#">About</Nav.Link>
               <Nav.Link href="#">Contact</Nav.Link>
+            </Nav>
+            <Nav className='d-md-none'>
+              <Nav.Link href="#features">My Reviews</Nav.Link>
+              <Nav.Link href="#features">Add Service</Nav.Link>
+              <Nav.Link href="#features">Login</Nav.Link>
+              <Nav.Link href="#pricing">Register</Nav.Link>
             </Nav>
             <Nav.Link href="#">
               <Button variant='primary' className=''>Schedule A Consulation</Button>
