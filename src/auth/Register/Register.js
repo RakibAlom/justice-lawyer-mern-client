@@ -92,7 +92,7 @@ const Register = () => {
             onClick={handleAccepted}
             label="Accept my terms & condition" />
         </Form.Group>
-        <Button className='w-100 rounded-0 mt-2' variant="primary" type="submit" disabled={!accepted}>
+        <Button className='w-100 rounded-0 mt-2' variant="danger" type="submit" disabled={!accepted}>
           Register
         </Button>
       </Form>

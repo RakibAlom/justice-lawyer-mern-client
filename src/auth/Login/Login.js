@@ -50,7 +50,7 @@ const Login = () => {
           <Form.Label>Password</Form.Label>
           <Form.Control className='rounded-0' name="password" type="password" placeholder="Password" required />
         </Form.Group>
-        <Button className='w-100 rounded-0 mt-2' variant="primary" type="submit">
+        <Button className='w-100 rounded-0 mt-2' variant="danger" type="submit">
           Login
         </Button>
       </Form>
