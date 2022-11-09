@@ -7,6 +7,7 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import OtherLoginSystem from '../OtherLoginSystem/OtherLoginSystem';
 import './Register.css'
 import toast from 'react-hot-toast';
+import { Container } from 'react-bootstrap';
 
 const Register = () => {
   const { createUserRegister, updateUserProfile } = useContext(AuthContext);
@@ -62,48 +63,62 @@ const Register = () => {
   }
 
   return (
-    <section className='register-section'>
-      <h2 className='text-center mb-4'>Register</h2>
-      <p className="text-danger text-center">{error}</p>
-      <Form onSubmit={handleRegister}>
-        <Form.Group className="mb-3" controlId="formBasicName">
-          <Form.Label>Full Name</Form.Label>
-          <Form.Control className='rounded-0' name='name' type="text" placeholder="Enter full name" required />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control className='rounded-0' name='email' type="email" placeholder="Enter email" required />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formPhotoURL">
-          <Form.Label>Photo URL (Optional)</Form.Label>
-          <Form.Control className='rounded-0' name='photoURL' type="text" placeholder="Photo URL" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control className='rounded-0' name='password' type="password" placeholder="Password" required />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formConfirmPassword">
-          <Form.Label>Confirm Password</Form.Label>
-          <Form.Control className='rounded-0' name='confirm_password' type="password" placeholder="Confirm Password" required />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check
-            type="checkbox"
-            onClick={handleAccepted}
-            label="Accept my terms & condition" />
-        </Form.Group>
-        <Button className='w-100 rounded-0 mt-2' variant="danger" type="submit" disabled={!accepted}>
-          Register
-        </Button>
-      </Form>
-      <div className="text-center my-3">
-        <Link to="/login" className='py-4 d-block'>Already have an account?</Link>
-        <p className='pb-3'>OR</p>
-        <div className='other-login-system'>
-          <OtherLoginSystem></OtherLoginSystem>
+    <Container>
+      <section className='register-section border p-5'>
+        <h2 className='text-center mb-4'>Register</h2>
+        <p className="text-danger text-center">{error}</p>
+        <Form onSubmit={handleRegister}>
+          <div className="row">
+            <div className="col-md-6">
+              <Form.Group className="mb-3" controlId="formBasicName">
+                <Form.Label>Full Name</Form.Label>
+                <Form.Control className='rounded-0' name='name' type="text" placeholder="Enter full name" required />
+              </Form.Group>
+            </div>
+            <div className="col-md-6">
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control className='rounded-0' name='email' type="email" placeholder="Enter email" required />
+              </Form.Group>
+            </div>
+            <div className="col-md-12">
+              <Form.Group className="mb-3" controlId="formPhotoURL">
+                <Form.Label>Photo URL (Optional)</Form.Label>
+                <Form.Control className='rounded-0' name='photoURL' type="text" placeholder="Photo URL" />
+              </Form.Group>
+            </div>
+            <div className="col-md-6">
+              <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control className='rounded-0' name='password' type="password" placeholder="Password" required />
+              </Form.Group>
+            </div>
+            <div className="col-md-6">
+              <Form.Group className="mb-3" controlId="formConfirmPassword">
+                <Form.Label>Confirm Password</Form.Label>
+                <Form.Control className='rounded-0' name='confirm_password' type="password" placeholder="Confirm Password" required />
+              </Form.Group>
+            </div>
+          </div>
+          <Form.Group className="mb-3" controlId="formBasicCheckbox" >
+            <Form.Check
+              type="checkbox"
+              onClick={handleAccepted}
+              label="Accept my terms & condition" />
+          </Form.Group>
+          <Button className='w-100 rounded-0 mt-2' variant="danger" type="submit" disabled={!accepted}>
+            Register
+          </Button>
+        </Form>
+        <div className="text-center my-3">
+          <Link to="/login" className='py-4 d-block'>Already have an account?</Link>
+          <p className='pb-3'>OR</p>
+          <div className='other-login-system'>
+            <OtherLoginSystem></OtherLoginSystem>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </Container>
   );
 };
 
