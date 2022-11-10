@@ -16,8 +16,25 @@ const OtherLoginSystem = () => {
     const googleProvider = new GoogleAuthProvider();
     signInWithProvider(googleProvider)
       .then(res => {
-        navigate(from, { replace: true });
-        toast.success('Welcome, you connected with Google!');
+        const user = res.user;
+        const currentUser = {
+          uid: user.uid
+        }
+        // get jwt token
+        fetch('http://localhost:5000/jwt', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(currentUser)
+        })
+          .then(res => res.json())
+          .then(data => {
+            localStorage.setItem('access-token', data.token);
+            navigate(from, { replace: true });
+            toast.success('Welcome, you connected with Google!');
+          });
+
       }).catch(error => {
         console.error(error)
         toast.error(error.message)
@@ -27,8 +44,25 @@ const OtherLoginSystem = () => {
     const githubProvider = new GithubAuthProvider();
     signInWithProvider(githubProvider)
       .then(res => {
-        navigate(from, { replace: true });
-        toast.success('Welcome, you connected with GitHub!');
+        const user = res.user;
+        const currentUser = {
+          uid: user.uid
+        }
+        // get jwt token
+        fetch('http://localhost:5000/jwt', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(currentUser)
+        })
+          .then(res => res.json())
+          .then(data => {
+            localStorage.setItem('access-token', data.token);
+            navigate(from, { replace: true });
+            toast.success('Welcome, you connected with GitHub!');
+          });
+
       }).catch(error => {
         console.error(error)
         toast.error(error.message)

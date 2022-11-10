@@ -6,7 +6,7 @@ import ServiceCard from '../../Services/ServiceCard/ServiceCard';
 const HomeServices = () => {
   const [services, setservices] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:5000/services')
+    fetch('http://localhost:5000/services-limit')
       .then(res => res.json())
       .then(data => setservices(data))
   }, [services]);

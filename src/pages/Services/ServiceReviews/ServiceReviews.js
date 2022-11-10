@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
+import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 
 const ServiceReviews = ({ service }) => {
   const { user } = useContext(AuthContext)
@@ -11,9 +12,9 @@ const ServiceReviews = ({ service }) => {
       .then(res => res.json())
       .then(data => {
         setReviews(data)
-        console.log(data)
+
       })
-  }, []);
+  }, [reviews]);
 
   const handleSubmitReview = event => {
     event.preventDefault();
@@ -36,15 +37,13 @@ const ServiceReviews = ({ service }) => {
       review
     }
 
-    console.log(newReview)
-
     fetch('http://localhost:5000/reviews', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
         authorization: `Bearer ${localStorage.getItem('access-token')}`
       },
-      body: JSON.stringify(reviews)
+      body: JSON.stringify(newReview)
     })
       .then(res => res.json())
       .then(data => {
@@ -52,6 +51,8 @@ const ServiceReviews = ({ service }) => {
           toast.success('Your Review Added On The Service!')
         }
         form.reset()
+        const currentReviews = [...reviews, data]
+        setReviews(currentReviews)
       })
       .catch(err => {
         toast.error('Something is wrong!')
@@ -59,10 +60,35 @@ const ServiceReviews = ({ service }) => {
       })
   }
 
+  const handleDeleteReview = id => {
+    const proceed = window.confirm('Are you sure, you want to cancel this order');
+    if (proceed) {
+      fetch(`http://localhost:5000/reviews/${id}`, {
+        method: 'DELETE',
+        headers: {
+          authorization: `Bearer ${localStorage.getItem('access-token')}`
+        }
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.deletedCount > 0) {
+            toast.success('Review Deleted Successfully!')
+            const remaining = reviews.filter(item => item._id !== id);
+            setReviews(remaining);
+          }
+        })
+        .catch(error => {
+          console.error(error)
+          toast.error('Something went wrong!')
+          toast.error(error.message)
+        })
+    }
+  }
+
   return (
     <div className="reviews-area">
       <div className="widget-header-2 position-relative">
-        <h5 className="mt-5">Reviews </h5>
+        <h5 className="mt-5">Reviews ({reviews.length})</h5>
         <hr />
       </div>
       <div className="review-form">
@@ -84,10 +110,10 @@ const ServiceReviews = ({ service }) => {
           </div>
         </form>
 
-        <div className="review-list">
+        <div className="review-list mt-4">
           {
-            reviews.filter(item => item.serviceId === service._id).map(review =>
-              <div className="single-review mt-5 shadow rounded-1 p-3" key={review._id}>
+            reviews.sort((a, b) => b._id - a._id).filter(item => item.serviceId === service._id).map(review =>
+              <div className="single-review mt-3 shadow rounded-1 p-3" key={review._id}>
                 <div className="justify-content-between d-flex w-100">
                   <div className="thumb">
                     <img className='rounded' src={review.userImage} alt={review.username} style={{ height: "30px" }} />
@@ -96,10 +122,10 @@ const ServiceReviews = ({ service }) => {
                   <div>
                     {
                       user && user.uid === review.uid ?
-                        <>
-                          <Link to="/" className="text-primary  me-2">edit</Link>
-                          <Link to="/" className="text-danger">delete</Link>
-                        </>
+                        <div>
+                          <Link to="/" className="btn btn-primary me-2"><FaEdit className='mb-1'></FaEdit></Link>
+                          <button className="btn btn-danger" onClick={() => handleDeleteReview(review._id)}><FaTrashAlt className='mb-1'></FaTrashAlt></button>
+                        </div>
                         : null
                     }
 

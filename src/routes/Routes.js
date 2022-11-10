@@ -8,9 +8,11 @@ import BlogDetails from '../pages/Blog/BlogDetails/BlogDetails';
 import Blogs from '../pages/Blog/Blogs';
 import Home from '../pages/Home/Home';
 import NotFound404 from '../pages/Other/NotFound/NotFound404';
+import Reviews from '../pages/Reviews/Reviews';
 import CreateService from '../pages/Services/CreateService/CreateService';
 import ServiceDetails from '../pages/Services/ServiceDetails/ServiceDetails';
 import Services from '../pages/Services/Services';
+import PrivateRoutes from './PrivateRouters';
 
 export const routes = createBrowserRouter([
   {
@@ -28,14 +30,13 @@ export const routes = createBrowserRouter([
         element: <ServiceDetails></ServiceDetails>,
         loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
       },
-      { path: '/add-service', element: <CreateService></CreateService> },
-
+      { path: '/add-service', element: <PrivateRoutes><CreateService></CreateService></PrivateRoutes> },
+      { path: '/reviews', element: <PrivateRoutes><Reviews></Reviews></PrivateRoutes> },
       {
         path: '/blog',
         element: <Blogs></Blogs>,
         loader: () => fetch(`https://next-learner-server.vercel.app/blog`)
       },
-      { path: '/add-service', element: <CreateService></CreateService> },
       {
         path: '/blog/:slug',
         element: <BlogDetails></BlogDetails>,
