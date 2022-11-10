@@ -4,12 +4,13 @@ import HomeContact from './HomeContact/HomeContact';
 import './Home.css'
 import HomeAbout from './HomeAbout/HomeAbout';
 import HomeBlogs from './HomeBlogs/HomeBlogs';
+import HomeServices from './HomeServices/HomeServices';
 
 const Home = () => {
   return (
     <div>
       <Banner></Banner>
-      <h1>Services</h1>
+      <HomeServices></HomeServices>
       <HomeBlogs></HomeBlogs>
       <HomeAbout></HomeAbout>
       <HomeContact></HomeContact>

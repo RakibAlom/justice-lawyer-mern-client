@@ -1,25 +1,27 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
-import { useLoaderData } from 'react-router-dom';
-import BlogCard from './BlogCard/BlogCard';
+import { Button, Container } from 'react-bootstrap';
+import { Link, useLoaderData } from 'react-router-dom';
+import ServiceCard from '../../Services/ServiceCard/ServiceCard';
 
 const HomeServices = () => {
   const services = useLoaderData();
   return (
     <>
-      <Container>
-        <div className="py-4">
+      <section className='home-services-section py-5'>
+        <Container>
+          <h1 className='text-center mb-5'>Legal Services</h1>
           <div className="row">
-            {
-              services.map(service =>
-                <div className="col-md-6 mb-4" key={service.id}>
-                  <BlogCard service={service}></BlogCard>
-                </div>
-              )
-            }
+            {/* <div className="col-lg-4 mb-4">
+              <ServiceCard></ServiceCard>
+            </div> */}
           </div>
-        </div>
-      </Container>
+          <div className='text-center mt-4'>
+            <Link to='/blog'>
+              <Button variant='outline-danger' className='btn btn-lg rounded-1 px-5'>All Services</Button>
+            </Link>
+          </div>
+        </Container>
+      </section>
     </>
   );
 };

@@ -1,17 +1,29 @@
 import React from 'react';
-import { Card } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
+import { FaStar } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const ServiceCard = ({ service }) => {
   return (
     <div>
       <Card className={`rounded-1 border-0 shadow`}>
-        <Card.Img className='rounded-1' variant="top" src={service.thumbnail_image} />
+        <Card.Img className='rounded-0' variant="top" src={service.serviceThumbnail} />
         <Card.Body>
-          <Card.Title><Link className={`text-decoration-none text-danger`} to={`/service/${service.id}`}>{service.title}</Link></Card.Title>
-          <Card.Text className="text-secondary">
-            {service.short_details.slice(0, 100)}...
+          <Link to={`/services/${service.slug}`} className="text-decoration-none text-danger"><Card.Title>{service.name}</Card.Title></Link>
+          <Card.Text className='text-secondary'>
+            {service.serviceDetails.slice(0, 90)}...
           </Card.Text>
+          <div className="d-flex justify-content-between align-items-center">
+            <div className="text-secondary fs-6 fw-semibold">
+              Service Fee: <span className='text-danger'>{service.price}</span>
+            </div>
+            <div className="text-secondary fs-6 fw-semibold">
+              {service.rating} <FaStar className='text-warning'></FaStar>
+            </div>
+          </div>
+          <div className="see-details-button mt-3">
+            <Link to={`/legal-services/${service._id}`}><Button variant="danger" className='rounded-1 w-100'>See Details</Button></Link>
+          </div>
         </Card.Body>
       </Card>
     </div>

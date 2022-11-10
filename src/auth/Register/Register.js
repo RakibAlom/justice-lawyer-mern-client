@@ -29,10 +29,27 @@ const Register = () => {
     if (password === confirm_password) {
       createUserRegister(email, password)
         .then(res => {
-          form.reset()
-          handleUpdateUserProfile(name, photoURL)
-          navigate('/')
-          toast.success('Register Successfully Completed!')
+          const user = res.user;
+          const currentUser = {
+            uid: user.uid
+          }
+          // get jwt token
+          fetch('http://localhost:5000/jwt', {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json'
+            },
+            body: JSON.stringify(currentUser)
+          })
+            .then(res => res.json())
+            .then(data => {
+              localStorage.setItem('access-token', data.token);
+              form.reset()
+              handleUpdateUserProfile(name, photoURL)
+              navigate('/')
+              toast.success('Register Successfully Completed!')
+            });
+
         }).catch(error => {
           console.error(error)
           setError(error.message)

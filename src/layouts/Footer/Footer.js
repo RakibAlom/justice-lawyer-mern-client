@@ -11,30 +11,30 @@ const Footer = () => {
           <div className="col-lg-3 col-md-6 my-4">
             <h3>Contact Us</h3>
             <p>Justice Lawyer - Law Defender</p>
-            <div class="list-group">
-              <Link to='/' class="nav-link mb-2"><FaMapMarkerAlt></FaMapMarkerAlt> 4124 Erie Street, Willoughby, OH 44094</Link>
-              <Link to='/' class="nav-link mb-2"><FaPhoneAlt></FaPhoneAlt> +88 01623-405027</Link>
-              <span class="nav-link mb-2"><FaRegClock></FaRegClock> Open: Sun-Thu: 9am – 5pm</span>
+            <div className="list-group">
+              <Link to='/' className="nav-link mb-2"><FaMapMarkerAlt></FaMapMarkerAlt> 4124 Erie Street, Willoughby, OH 44094</Link>
+              <Link to='/' className="nav-link mb-2"><FaPhoneAlt></FaPhoneAlt> +88 01623-405027</Link>
+              <span className="nav-link mb-2"><FaRegClock></FaRegClock> Open: Sun-Thu: 9am – 5pm</span>
             </div>
           </div>
           <div className="col-lg-3 col-6 my-4">
             <h3>Services</h3>
-            <div class="list-group">
-              <Link to='/' class="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Elder Law</Link>
-              <Link to='/' class="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Elder Law</Link>
-              <Link to='/' class="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Elder Law</Link>
-              <Link to='/' class="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Elder Law</Link>
-              <Link to='/' class="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Elder Law</Link>
+            <div className="list-group">
+              <Link to='/' className="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Elder Law</Link>
+              <Link to='/' className="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Elder Law</Link>
+              <Link to='/' className="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Elder Law</Link>
+              <Link to='/' className="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Elder Law</Link>
+              <Link to='/' className="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Elder Law</Link>
             </div>
           </div>
           <div className="col-lg-3 col-6 my-4">
             <h3>Quick Links</h3>
-            <div class="list-group">
-              <Link to='/' class="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Home</Link>
-              <Link to='/' class="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Legal Services</Link>
-              <Link to='/' class="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Blog</Link>
-              <Link to='/' class="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> About</Link>
-              <Link to='/' class="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Privacy Policy</Link>
+            <div className="list-group">
+              <Link to='/' className="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Home</Link>
+              <Link to='/' className="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Legal Services</Link>
+              <Link to='/' className="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Blog</Link>
+              <Link to='/' className="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> About</Link>
+              <Link to='/' className="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Privacy Policy</Link>
             </div>
           </div>
           <div className="col-lg-3 col-md-6 my-4">

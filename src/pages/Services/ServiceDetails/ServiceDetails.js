@@ -1,23 +1,37 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
+import { FaStar } from 'react-icons/fa';
 import { useLoaderData } from 'react-router-dom';
-import './BlogDetails.css'
+import ServiceSidebar from '../ServiceSidebar/ServiceSidebar';
 
-const BlogDetails = () => {
-  const blog = useLoaderData()
+const ServiceDetails = () => {
+  const service = useLoaderData()
   return (
     <Container>
-      <div className="py-4">
-        <div className='shadow p-3 p-md-5 blog-details'>
-          <h2>{blog.title}</h2>
-          <img className='img-fluid my-3 rounded-3' src={blog.thumbnail_image} alt={blog.title} />
-          <div>
-            <div dangerouslySetInnerHTML={{ __html: blog.description }} />
+      <div className="row">
+        <div className="col-lg-9 col-md-8 py-4">
+          <div className='shadow p-3 p-md-4 service-details rounded-1'>
+            <h2>{service.name}</h2>
+            <img className='img-fluid my-3 rounded-1 w-100' src={service.serviceThumbnail} alt={service.name} />
+            <div className="d-flex justify-content-between align-items-center p-3 border rounded-1 mt-2 mb-3">
+              <div className="text-secondary fs-6 fw-semibold">
+                Service Fee: <span className='text-danger'>{service.price}</span>
+              </div>
+              <div className="text-secondary fs-6 fw-semibold d-flex align-items-center gap-1">
+                {service.rating} <FaStar className='text-warning'></FaStar>
+              </div>
+            </div>
+            <div>
+              <div dangerouslySetInnerHTML={{ __html: service.serviceDetails }} />
+            </div>
           </div>
+        </div>
+        <div className="col-lg-3 col-md-4">
+          <ServiceSidebar></ServiceSidebar>
         </div>
       </div>
     </Container>
   );
 };
 
-export default BlogDetails;
+export default ServiceDetails;

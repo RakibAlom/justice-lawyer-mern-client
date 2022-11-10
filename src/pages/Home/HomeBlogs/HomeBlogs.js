@@ -25,7 +25,7 @@ const HomeBlogs = () => {
         </div>
         <div className='text-center mt-4'>
           <Link to='/blog'>
-            <Button variant='outline-danger' className='btn btn-lg rounded-1 px-5'>View More</Button>
+            <Button variant='outline-danger' className='btn btn-lg rounded-1 px-5'>All Blogs</Button>
           </Link>
         </div>
       </Container>

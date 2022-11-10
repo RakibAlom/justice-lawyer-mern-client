@@ -28,7 +28,7 @@ const MainMenu = () => {
               <Nav.Link href="#"><FaLinkedinIn></FaLinkedinIn></Nav.Link>
               <Nav.Link href="#"><FaYoutube></FaYoutube></Nav.Link>
             </Nav>
-            <Nav className='ms-auto'>
+            <Nav className='ms-auto fw-semibold'>
               {
                 user && user.uid ?
                   <>
@@ -61,7 +61,7 @@ const MainMenu = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className='py-3'>
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className='py-3 fw-semibold'>
         <Container>
           <Navbar.Brand>
             <Link to='/' className='nav-link'>
@@ -75,7 +75,6 @@ const MainMenu = () => {
               <NavLink className="nav-link" to="/legal-services">Legal Services</NavLink>
               <NavLink className="nav-link" to="/blog">Blog</NavLink>
               <NavLink className="nav-link" to="/about">About</NavLink>
-              <NavLink className="nav-link" to="/contact">Contact</NavLink>
             </Nav>
             <Nav className='d-md-none'>
               {
@@ -96,7 +95,7 @@ const MainMenu = () => {
               }
             </Nav>
             <Nav.Link href="#">
-              <button className='btn btn-danger rounded-1'>Schedule A Consulation</button>
+              <button className='btn btn-danger rounded-1 fw-semibold'>Schedule A Consulation</button>
             </Nav.Link>
           </Navbar.Collapse>
         </Container>

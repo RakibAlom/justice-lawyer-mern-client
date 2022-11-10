@@ -25,9 +25,26 @@ const Login = () => {
     setError('')
     signInWithEmailPass(email, password)
       .then(res => {
-        form.reset();
-        navigate(from, { replace: true });
-        toast.success('Welcome, you login successfully!')
+        const user = res.user;
+        const currentUser = {
+          uid: user.uid
+        }
+        // get jwt token
+        fetch('http://localhost:5000/jwt', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(currentUser)
+        })
+          .then(res => res.json())
+          .then(data => {
+            localStorage.setItem('access-token', data.token);
+            form.reset();
+            navigate(from, { replace: true });
+            toast.success('Welcome, you login successfully!')
+          });
+
       }).catch(error => {
         console.error(error)
         setError(error.message)

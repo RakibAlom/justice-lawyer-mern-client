@@ -7,6 +7,9 @@ import About from '../pages/About/About';
 import BlogDetails from '../pages/Blog/BlogDetails/BlogDetails';
 import Blogs from '../pages/Blog/Blogs';
 import Home from '../pages/Home/Home';
+import CreateService from '../pages/Services/CreateService/CreateService';
+import ServiceDetails from '../pages/Services/ServiceDetails/ServiceDetails';
+import Services from '../pages/Services/Services';
 
 export const routes = createBrowserRouter([
   {
@@ -15,10 +18,23 @@ export const routes = createBrowserRouter([
     children: [
       { path: '/', element: <Home></Home> },
       {
+        path: '/legal-services',
+        element: <Services></Services>,
+        loader: () => fetch(`http://localhost:5000/services`)
+      },
+      {
+        path: '/legal-services/:id',
+        element: <ServiceDetails></ServiceDetails>,
+        loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
+      },
+      { path: '/add-service', element: <CreateService></CreateService> },
+
+      {
         path: '/blog',
         element: <Blogs></Blogs>,
         loader: () => fetch(`https://next-learner-server.vercel.app/blog`)
       },
+      { path: '/add-service', element: <CreateService></CreateService> },
       {
         path: '/blog/:slug',
         element: <BlogDetails></BlogDetails>,
