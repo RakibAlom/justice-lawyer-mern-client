@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import toast from 'react-hot-toast';
-
+import { Helmet } from "react-helmet";
 const CreateService = () => {
   const handleCreateService = event => {
     event.preventDefault();
@@ -42,6 +42,11 @@ const CreateService = () => {
   }
   return (
     <Container>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Create New Service | Justice Lawyer</title>
+        <meta name="title" content="Create New Service | Justice Lawyer" />
+      </Helmet>
       <section className='service-section'>
         <div className="row py-4">
           <div className="col-md-8 col-lg-9">

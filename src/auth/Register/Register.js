@@ -8,7 +8,7 @@ import OtherLoginSystem from '../OtherLoginSystem/OtherLoginSystem';
 import './Register.css'
 import toast from 'react-hot-toast';
 import { Container } from 'react-bootstrap';
-
+import { Helmet } from "react-helmet";
 const Register = () => {
   const { createUserRegister, updateUserProfile } = useContext(AuthContext);
   const [accepted, setAccepted] = useState(false);
@@ -81,6 +81,12 @@ const Register = () => {
 
   return (
     <Container>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Register | Justice Lawyer</title>
+        <meta name="title" content="Register | Justice Lawyer" />
+        <meta name="description" content="Please, singup for our review and trust" />
+      </Helmet>
       <section className='register-section border p-5'>
         <h2 className='text-center mb-4'>Register</h2>
         <p className="text-danger text-center">{error}</p>

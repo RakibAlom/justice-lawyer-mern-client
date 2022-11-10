@@ -3,11 +3,17 @@ import { Container } from 'react-bootstrap';
 import { useLoaderData } from 'react-router-dom';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import './BlogDetails.css'
+import { Helmet } from "react-helmet";
 
 const BlogDetails = () => {
   const blog = useLoaderData()
   return (
     <Container>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{blog.title} | Blog</title>
+        <meta name="title" content={`${blog.title} | Blog`} />
+      </Helmet>
       <div className="py-4">
         <div className='shadow p-3 p-md-5 blog-details'>
           <h2>{blog.title}</h2>

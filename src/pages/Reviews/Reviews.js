@@ -5,7 +5,7 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import Spinner from 'react-bootstrap/Spinner'
-
+import { Helmet } from "react-helmet";
 const Reviews = () => {
   const { user, logOut } = useContext(AuthContext)
   const [reviews, setReviews] = useState([]);
@@ -54,6 +54,11 @@ const Reviews = () => {
   }
   return (
     <div className="reivews-section my-4">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>My Reviews | Justice Lawyer</title>
+        <meta name="title" content="My Reviews | Justice Lawyer" />
+      </Helmet>
       <Container>
         <div className="review-list row shadow p-4 p-2 rounded-1" style={{ minHeight: "460px" }}>
           <h1 className='text-center mb-4'>My Reviews</h1>

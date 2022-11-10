@@ -1,10 +1,17 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
 import AboutImg from '../../images/justice-lawyer-about.webp'
+import { Helmet } from "react-helmet";
 
 const About = () => {
   return (
     <Container>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>About | Justice Lawyer</title>
+        <meta name="title" content="About | Justice Lawyer" />
+        <meta name="description" content="I'm your justice lawyer and your defender hero" />
+      </Helmet>
       <div className='my-4 shadow p-2 p-lg-4 rounded-1'>
         <div className="row align-items-center flex-md-row-reverse">
           <div className="col-md-6">

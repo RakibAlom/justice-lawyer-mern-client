@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import ServiceCard from './ServiceCard/ServiceCard';
 import Spinner from 'react-bootstrap/Spinner'
+import { Helmet } from "react-helmet";
 const Services = () => {
   const [services, setServices] = useState([])
   const [loading, setLoading] = useState(true)
@@ -17,6 +18,12 @@ const Services = () => {
   }, [])
   return (
     <Container>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Legal Services - Justice Lawyer</title>
+        <meta name="title" content="Legal Services - Justice Lawyer" />
+        <meta name="description" content="Are you looking to ensure legal protection and happy futures for yourself and your loved ones? I'm here to help you discover all your options and make decisions with confidence." />
+      </Helmet>
       <div className="py-4">
         <h1 className='text-center text-danger fw-bold mb-4'>Legal Services</h1>
         {

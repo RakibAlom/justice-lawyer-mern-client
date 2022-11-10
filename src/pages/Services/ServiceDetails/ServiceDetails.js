@@ -5,11 +5,16 @@ import { useLoaderData } from 'react-router-dom';
 import ServiceReviews from '../ServiceReviews/ServiceReviews';
 import ServiceSidebar from '../ServiceSidebar/ServiceSidebar';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
-
+import { Helmet } from "react-helmet";
 const ServiceDetails = () => {
   const service = useLoaderData()
   return (
     <Container>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{service.name} | Legal Service</title>
+        <meta name="title" content={`${service.name} | Legal Service`} />
+      </Helmet>
       <div className="row">
         <div className="col-lg-9 col-md-8 py-4">
           <div className='shadow p-3 p-md-4 service-details rounded-1'>

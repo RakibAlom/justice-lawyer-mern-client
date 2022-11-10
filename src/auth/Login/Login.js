@@ -9,7 +9,7 @@ import './Login.css'
 import toast from 'react-hot-toast';
 import { useState } from 'react';
 import { Container } from 'react-bootstrap';
-
+import { Helmet } from "react-helmet";
 const Login = () => {
   const { signInWithEmailPass, setLoading } = useContext(AuthContext)
   const [error, setError] = useState('')
@@ -56,6 +56,12 @@ const Login = () => {
   }
   return (
     <Container>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Login | Justice Lawyer</title>
+        <meta name="title" content="Login | Justice Lawyer" />
+        <meta name="description" content="Please, Login for our review and trust" />
+      </Helmet>
       <section className='login-section shadow p-4 p-md-4'>
         <h2 className='text-center mb-4'>Login</h2>
         <p className="text-danger text-center">{error}</p>
