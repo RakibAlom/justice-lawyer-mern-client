@@ -122,10 +122,10 @@ const ServiceReviews = ({ service }) => {
                   <div>
                     {
                       user && user.uid === review.uid ?
-                        <div>
-                          <Link to="/" className="btn btn-primary me-2"><FaEdit className='mb-1'></FaEdit></Link>
+                        <>
+                          <Link to={`/reviews/${review._id}`} className="btn btn-primary me-2"><FaEdit className='mb-1'></FaEdit></Link>
                           <button className="btn btn-danger" onClick={() => handleDeleteReview(review._id)}><FaTrashAlt className='mb-1'></FaTrashAlt></button>
-                        </div>
+                        </>
                         : null
                     }
 

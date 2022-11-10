@@ -9,6 +9,7 @@ import Blogs from '../pages/Blog/Blogs';
 import Home from '../pages/Home/Home';
 import NotFound404 from '../pages/Other/NotFound/NotFound404';
 import Reviews from '../pages/Reviews/Reviews';
+import ReviewUpdate from '../pages/Reviews/ReviewUpdate/ReviewUpdate';
 import CreateService from '../pages/Services/CreateService/CreateService';
 import ServiceDetails from '../pages/Services/ServiceDetails/ServiceDetails';
 import Services from '../pages/Services/Services';
@@ -32,6 +33,11 @@ export const routes = createBrowserRouter([
       },
       { path: '/add-service', element: <PrivateRoutes><CreateService></CreateService></PrivateRoutes> },
       { path: '/reviews', element: <PrivateRoutes><Reviews></Reviews></PrivateRoutes> },
+      {
+        path: '/reviews/:id',
+        element: <PrivateRoutes><ReviewUpdate></ReviewUpdate></PrivateRoutes>,
+        loader: ({ params }) => fetch(`http://localhost:5000/reviews/${params.id}`)
+      },
       {
         path: '/blog',
         element: <Blogs></Blogs>,

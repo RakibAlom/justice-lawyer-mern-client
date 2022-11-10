@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Container } from 'react-bootstrap';
+import toast from 'react-hot-toast';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 
 const ReviewUpdate = () => {
+  const review = useLoaderData()
+  const navigate = useNavigate();
+  const { _id } = review;
+  console.log(review)
+  const [reviews, setReviews] = useState([]);
 
   const handleUpdateReview = event => {
     event.preventDefault();
@@ -11,22 +19,26 @@ const ReviewUpdate = () => {
       review
     }
 
-    fetch('http://localhost:5000/reviews', {
-      method: 'POST',
+    fetch(`http://localhost:5000/reviews/${_id}`, {
+      method: 'PATCH',
       headers: {
         'content-type': 'application/json',
-        authorization: `Bearer ${localStorage.getItem('access-token')}`
+        authorization: `Bearer ${localStorage.getItem('genius-token')}`
       },
       body: JSON.stringify(newReview)
     })
       .then(res => res.json())
       .then(data => {
-        if (data.acknowledged) {
-          toast.success('Your Review Added On The Service!')
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          const remaining = reviews.filter(item => item._id !== _id);
+          const approving = reviews.find(item => item._id === _id);
+          const newReviews = [approving, ...remaining];
+          setReviews(newReviews);
+          toast.success('Review Updated!')
+          navigate('/reviews')
         }
-        form.reset()
-        const currentReviews = [...reviews, data]
-        setReviews(currentReviews)
+
       })
       .catch(err => {
         toast.error('Something is wrong!')
@@ -34,26 +46,27 @@ const ReviewUpdate = () => {
       })
   }
   return (
-    <div className="reviews-area">
-      <div className="widget-header-2 position-relative">
-        <h5 className="mt-5">Edit Review</h5>
-        <hr />
-      </div>
-      <div className="review-form">
-        <form onSubmit={handleUpdateReview}>
-          <div className="row">
-            <div className="col-12">
-              <div className="form-group">
-                <textarea className="form-control w-100" name="message" id="review" cols="30" rows="3" placeholder="Write review"></textarea>
+    <div className="reviews-section py-5 hv-full">
+      <Container>
+        <div className="reviews-area shadow p-4 rounded-1" style={{ minHeight: "460px" }}>
+          <h2 className="mt-2">Edit Review</h2>
+          <hr />
+          <div className="review-form">
+            <form onSubmit={handleUpdateReview}>
+              <div className="row">
+                <div className="col-12">
+                  <div className="form-group">
+                    <textarea className="form-control w-100" defaultValue={review.review} name="message" id="review" cols="30" rows="3" placeholder="Write review"></textarea>
+                  </div>
+                </div>
               </div>
-            </div>
+              <div className="form-group mt-1 mb-20">
+                <button type="submit" className="btn btn-danger mt-2">Update Review</button>
+              </div>
+            </form>
           </div>
-          <div className="form-group mt-1 mb-20">
-            <button type="submit" className="btn btn-danger mt-2">Update Review</button>
-
-          </div>
-        </form>
-      </div>
+        </div>
+      </Container>
     </div>
   );
 };
