@@ -2,14 +2,21 @@ import React from 'react';
 import { Button, Card } from 'react-bootstrap';
 import { FaStar } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+
 
 const ServiceCard = ({ service }) => {
   return (
     <div>
       <Card className={`rounded-1 border-0 shadow`}>
-        <Card.Img className='rounded-0' variant="top" src={service.serviceThumbnail} />
+        <PhotoProvider>
+          <PhotoView src={service.serviceThumbnail}>
+            <Card.Img className='rounded-0' variant="top" src={service.serviceThumbnail} />
+          </PhotoView>
+        </PhotoProvider>
+
         <Card.Body>
-          <Link to={`/services/${service.slug}`} className="text-decoration-none text-danger"><Card.Title>{service.name}</Card.Title></Link>
+          <Link to={`/legal-services/${service._id}`} className="text-decoration-none text-danger"><Card.Title>{service.name}</Card.Title></Link>
           <Card.Text className='text-secondary'>
             {service.serviceDetails.slice(0, 90)}...
           </Card.Text>

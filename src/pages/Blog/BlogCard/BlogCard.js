@@ -1,12 +1,17 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 const BlogCard = ({ blog }) => {
   return (
     <div>
       <Card className={`rounded-1 border-0 shadow`}>
-        <Card.Img className='rounded-1' variant="top" src={blog.thumbnail_image} />
+        <PhotoProvider>
+          <PhotoView src={blog.thumbnail_image}>
+            <Card.Img className='rounded-1' variant="top" src={blog.thumbnail_image} />
+          </PhotoView>
+        </PhotoProvider>
         <Card.Body>
           <Card.Title><Link className={`text-decoration-none text-danger`} to={`/blog/${blog.slug}`}>{blog.title}</Link></Card.Title>
           <Card.Text className="text-secondary">

@@ -41,12 +41,12 @@ export const routes = createBrowserRouter([
       {
         path: '/blog',
         element: <Blogs></Blogs>,
-        loader: () => fetch(`https://next-learner-server.vercel.app/blog`)
+        loader: () => fetch(`http://localhost:5000/blogs`)
       },
       {
         path: '/blog/:slug',
         element: <BlogDetails></BlogDetails>,
-        loader: ({ params }) => fetch(`https://next-learner-server.vercel.app/blog/${params.slug}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/blogs/${params.slug}`)
       },
       { path: '/about', element: <About></About> },
       { path: '/login', element: <Login></Login> },

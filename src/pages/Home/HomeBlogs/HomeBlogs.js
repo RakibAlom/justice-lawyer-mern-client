@@ -6,7 +6,7 @@ import BlogCard from '../../Blog/BlogCard/BlogCard';
 const HomeBlogs = () => {
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
-    fetch(`https://next-learner-server.vercel.app/blog`)
+    fetch(`http://localhost:5000/blogs-limit`)
       .then(res => res.json())
       .then(data => setBlogs(data));
   }, []);
@@ -16,7 +16,7 @@ const HomeBlogs = () => {
         <h1 className='text-center mb-5'>Our Latest Blog</h1>
         <div className="row">
           {
-            blogs.sort((a, b) => b.id - a.id).slice(0, 3).map(blog =>
+            blogs.map(blog =>
               <div className="col-lg-4 mb-4" key={blog.id}>
                 <BlogCard blog={blog}></BlogCard>
               </div>

@@ -4,6 +4,7 @@ import { FaStar } from 'react-icons/fa';
 import { useLoaderData } from 'react-router-dom';
 import ServiceReviews from '../ServiceReviews/ServiceReviews';
 import ServiceSidebar from '../ServiceSidebar/ServiceSidebar';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 const ServiceDetails = () => {
   const service = useLoaderData()
@@ -13,7 +14,11 @@ const ServiceDetails = () => {
         <div className="col-lg-9 col-md-8 py-4">
           <div className='shadow p-3 p-md-4 service-details rounded-1'>
             <h2>{service.name}</h2>
-            <img className='img-fluid my-3 rounded-1 w-100' src={service.serviceThumbnail} alt={service.name} />
+            <PhotoProvider>
+              <PhotoView src={service.serviceThumbnail}>
+                <img className='img-fluid my-3 rounded-1 w-100' src={service.serviceThumbnail} alt={service.name} />
+              </PhotoView>
+            </PhotoProvider>
             <div className="d-flex justify-content-between align-items-center p-3 border rounded-1 mt-2 mb-3">
               <div className="text-secondary fs-6 fw-semibold">
                 Service Fee: <span className='text-danger'>{service.price}</span>
