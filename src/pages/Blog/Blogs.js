@@ -9,6 +9,7 @@ const Blogs = () => {
     <>
       <Container>
         <div className="py-4">
+          <h1 className='text-center text-danger fw-bold mb-5'>Blog</h1>
           <div className="row">
             {
               blogs.map(blog =>

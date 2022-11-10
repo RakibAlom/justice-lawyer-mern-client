@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
   const [services, setservices] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:5000/services')
+    fetch('https://justice-lawyer-server.vercel.app/services')
       .then(res => res.json())
       .then(data => setservices(data))
   }, [services]);
@@ -28,7 +28,7 @@ const Footer = () => {
             <div className="list-group">
               {
                 services.map(servcie =>
-                  <Link to={`/legal-services/${servcie._id}`} className="nav-link mb-2" aria-current="true" key={servcie._id}>
+                  <Link to={`/services/${servcie._id}`} className="nav-link mb-2" aria-current="true" key={servcie._id}>
                     <FaAngleDoubleRight></FaAngleDoubleRight> {servcie.name}
                   </Link>
                 )
@@ -39,7 +39,7 @@ const Footer = () => {
             <h3>Quick Links</h3>
             <div className="list-group">
               <Link to='/' className="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Home</Link>
-              <Link to='/legal-services' className="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Legal Services</Link>
+              <Link to='/services' className="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Legal Services</Link>
               <Link to='/blog' className="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Blog</Link>
               <Link to='/about' className="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> About</Link>
               <Link to='/privacy-policy' className="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Privacy Policy</Link>

@@ -7,7 +7,7 @@ import './ServiceSidebar.css'
 const ServiceSidebar = () => {
   const [services, setServices] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:5000/services')
+    fetch('https://justice-lawyer-server.vercel.app/services')
       .then(res => res.json())
       .then(data => setServices(data))
   }, []);
@@ -18,7 +18,7 @@ const ServiceSidebar = () => {
       <div className="list-group rounded-0 mt-3">
         {
           services.map(servcie =>
-            <NavLink to={`/legal-services/${servcie._id}`} className={`list-group-item list-group-item-action border-0 shadow-sm mb-3 rounded-1`} aria-current="true" key={servcie._id}>
+            <NavLink to={`/services/${servcie._id}`} className={`list-group-item list-group-item-action border-0 shadow-sm mb-3 rounded-1`} aria-current="true" key={servcie._id}>
               {servcie.name}
             </NavLink>
           )

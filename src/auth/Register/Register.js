@@ -34,7 +34,7 @@ const Register = () => {
             uid: user.uid
           }
           // get jwt token
-          fetch('http://localhost:5000/jwt', {
+          fetch('https://justice-lawyer-server.vercel.app/jwt', {
             method: 'POST',
             headers: {
               'content-type': 'application/json'

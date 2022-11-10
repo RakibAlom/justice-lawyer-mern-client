@@ -22,31 +22,30 @@ export const routes = createBrowserRouter([
     children: [
       { path: '/', element: <Home></Home> },
       {
-        path: '/legal-services',
-        element: <Services></Services>,
-        loader: () => fetch(`http://localhost:5000/services`)
+        path: '/services',
+        element: <Services></Services>
       },
       {
-        path: '/legal-services/:id',
+        path: '/services/:id',
         element: <ServiceDetails></ServiceDetails>,
-        loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
+        loader: ({ params }) => fetch(`https://justice-lawyer-server.vercel.app/services/${params.id}`)
       },
       { path: '/add-service', element: <PrivateRoutes><CreateService></CreateService></PrivateRoutes> },
       { path: '/reviews', element: <PrivateRoutes><Reviews></Reviews></PrivateRoutes> },
       {
         path: '/reviews/:id',
         element: <PrivateRoutes><ReviewUpdate></ReviewUpdate></PrivateRoutes>,
-        loader: ({ params }) => fetch(`http://localhost:5000/reviews/${params.id}`)
+        loader: ({ params }) => fetch(`https://justice-lawyer-server.vercel.app/reviews/${params.id}`)
       },
       {
         path: '/blog',
         element: <Blogs></Blogs>,
-        loader: () => fetch(`http://localhost:5000/blogs`)
+        loader: () => fetch(`https://justice-lawyer-server.vercel.app/blogs`)
       },
       {
         path: '/blog/:slug',
         element: <BlogDetails></BlogDetails>,
-        loader: ({ params }) => fetch(`http://localhost:5000/blogs/${params.slug}`)
+        loader: ({ params }) => fetch(`https://justice-lawyer-server.vercel.app/blogs/${params.slug}`)
       },
       { path: '/about', element: <About></About> },
       { path: '/login', element: <Login></Login> },

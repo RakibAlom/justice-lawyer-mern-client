@@ -2,19 +2,32 @@ import React, { useEffect, useState } from 'react';
 import { Button, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import ServiceCard from '../../Services/ServiceCard/ServiceCard';
+import Spinner from 'react-bootstrap/Spinner'
 
 const HomeServices = () => {
   const [services, setservices] = useState([]);
+  const [loading, setLoading] = useState(true)
   useEffect(() => {
-    fetch('http://localhost:5000/services-limit')
+    setLoading(true)
+    fetch('https://justice-lawyer-server.vercel.app/services-limit')
       .then(res => res.json())
-      .then(data => setservices(data))
-  }, [services]);
+      .then(data => {
+        setservices(data)
+        setLoading(false)
+      })
+
+  }, []);
   return (
     <>
       <section className='home-services-section py-5'>
         <Container>
-          <h1 className='text-center mb-5'>Legal Services</h1>
+          <h1 className='text-center mb-5 fw-bold text-danger'>Legal Services</h1>
+          {
+            loading &&
+            <div className='text-center py-4'>
+              <Spinner animation="border" variant="danger" />
+            </div>
+          }
           <div className="row">
             {
               services.map(service =>
@@ -25,7 +38,7 @@ const HomeServices = () => {
             }
           </div>
           <div className='text-center mt-4'>
-            <Link to='/legal-services'>
+            <Link to='/services'>
               <Button variant='outline-danger' className='btn btn-lg rounded-1 px-5'>See All</Button>
             </Link>
           </div>

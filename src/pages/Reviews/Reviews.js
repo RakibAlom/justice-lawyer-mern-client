@@ -4,12 +4,15 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
+import Spinner from 'react-bootstrap/Spinner'
 
 const Reviews = () => {
   const { user, logOut } = useContext(AuthContext)
   const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews?uid=${user?.uid}`, {
+    setLoading(true)
+    fetch(`https://justice-lawyer-server.vercel.app/reviews?uid=${user?.uid}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem('genius-token')}`
       }
@@ -22,12 +25,13 @@ const Reviews = () => {
       })
       .then(data => {
         setReviews(data);
+        setLoading(false)
       })
   }, [user?.uid, logOut])
   const handleDeleteReview = id => {
-    const proceed = window.confirm('Are you sure, you want to cancel this order');
+    const proceed = window.confirm('Are you sure, you want to delete!');
     if (proceed) {
-      fetch(`http://localhost:5000/reviews/${id}`, {
+      fetch(`https://justice-lawyer-server.vercel.app/reviews/${id}`, {
         method: 'DELETE',
         headers: {
           authorization: `Bearer ${localStorage.getItem('access-token')}`
@@ -55,38 +59,44 @@ const Reviews = () => {
           <h1 className='text-center mb-4'>My Reviews</h1>
           <hr />
           {
-            reviews.length < 1 ?
-              <h2 className='text-danger fw-bold text-center'>No reviews were added</h2>
-              :
+            loading &&
+            <div className='text-center py-4'>
+              <Spinner animation="border" variant="danger" />
+            </div>
+          }
+          {
+            reviews.length < 1 && <h2 className='text-danger fw-bold text-center'>No reviews were added</h2>
 
-              reviews.filter(item => item.uid === user.uid).map(review =>
+          }
+          {
+            reviews.filter(item => item.uid === user.uid).map(review =>
 
-                <div className="col-md-6" key={review._id}>
-                  <div className="single-review mb-4 shadow rounded-1 p-3">
-                    <div className="justify-content-between d-flex w-100">
-                      <div className="thumb">
-                        <span className='fw-semibold'>Review - <span className='text-success'>{review.serviceName}</span></span>
-                      </div>
-                      <div>
-                        {
-                          user && user.uid === review.uid ?
-                            <>
-                              <Link to={`/reviews/${review._id}`} className="btn btn-primary me-2"><FaEdit className='mb-1'></FaEdit></Link>
-                              <button className="btn btn-danger" onClick={() => handleDeleteReview(review._id)}><FaTrashAlt className='mb-1'></FaTrashAlt></button>
-                            </>
-                            : null
-                        }
-
-                      </div>
+              <div className="col-md-6" key={review._id}>
+                <div className="single-review mb-4 shadow rounded-1 p-3">
+                  <div className="justify-content-between d-flex w-100">
+                    <div className="thumb">
+                      <span className='fw-semibold'>Review - <span className='text-success'>{review.serviceName}</span></span>
                     </div>
-                    <div className="pt-3">
-                      <p className="review m-0">
-                        {review.review}
-                      </p>
+                    <div>
+                      {
+                        user && user.uid === review.uid ?
+                          <>
+                            <Link to={`/reviews/${review._id}`} className="btn btn-primary me-2"><FaEdit className='mb-1'></FaEdit></Link>
+                            <button className="btn btn-danger" onClick={() => handleDeleteReview(review._id)}><FaTrashAlt className='mb-1'></FaTrashAlt></button>
+                          </>
+                          : null
+                      }
+
                     </div>
                   </div>
+                  <div className="pt-3">
+                    <p className="review m-0">
+                      {review.review}
+                    </p>
+                  </div>
                 </div>
-              )
+              </div>
+            )
           }
         </div>
       </Container>

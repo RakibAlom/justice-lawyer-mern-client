@@ -1,15 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
-import { useLoaderData } from 'react-router-dom';
 import ServiceCard from './ServiceCard/ServiceCard';
-
+import Spinner from 'react-bootstrap/Spinner'
 const Services = () => {
-  const services = useLoaderData();
-  console.log(services)
+  const [services, setServices] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    setLoading(true)
+    fetch(`https://justice-lawyer-server.vercel.app/services`)
+      .then(res => res.json())
+      .then(data => {
+        setServices(data)
+        setLoading(false)
+      })
+  }, [])
   return (
     <Container>
       <div className="py-4">
         <h1 className='text-center text-danger fw-bold mb-4'>Legal Services</h1>
+        {
+          loading &&
+          <div className='text-center py-4'>
+            <Spinner animation="border" variant="danger" />
+          </div>
+        }
         <div className="row">
           {
             services.map(service =>

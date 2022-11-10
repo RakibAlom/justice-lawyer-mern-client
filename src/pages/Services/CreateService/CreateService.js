@@ -20,7 +20,7 @@ const CreateService = () => {
       serviceDetails
     }
 
-    fetch('http://localhost:5000/services', {
+    fetch('https://justice-lawyer-server.vercel.app/services', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',

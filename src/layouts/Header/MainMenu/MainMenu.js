@@ -73,7 +73,7 @@ const MainMenu = () => {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mx-auto">
               <NavLink className="nav-link" end to="/">Home</NavLink>
-              <NavLink className="nav-link" to="/legal-services">Legal Services</NavLink>
+              <NavLink className="nav-link" to="/services">Legal Services</NavLink>
               <NavLink className="nav-link" to="/blog">Blog</NavLink>
               <NavLink className="nav-link" to="/about">About</NavLink>
             </Nav>

@@ -8,11 +8,10 @@ const ServiceReviews = ({ service }) => {
   const { user } = useContext(AuthContext)
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:5000/reviews')
+    fetch('https://justice-lawyer-server.vercel.app/reviews')
       .then(res => res.json())
       .then(data => {
         setReviews(data)
-
       })
   }, [reviews]);
 
@@ -37,7 +36,7 @@ const ServiceReviews = ({ service }) => {
       review
     }
 
-    fetch('http://localhost:5000/reviews', {
+    fetch('https://justice-lawyer-server.vercel.app/reviews', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -61,9 +60,9 @@ const ServiceReviews = ({ service }) => {
   }
 
   const handleDeleteReview = id => {
-    const proceed = window.confirm('Are you sure, you want to cancel this order');
+    const proceed = window.confirm('Are you sure, you want to delete!');
     if (proceed) {
-      fetch(`http://localhost:5000/reviews/${id}`, {
+      fetch(`https://justice-lawyer-server.vercel.app/reviews/${id}`, {
         method: 'DELETE',
         headers: {
           authorization: `Bearer ${localStorage.getItem('access-token')}`
@@ -105,7 +104,7 @@ const ServiceReviews = ({ service }) => {
               user && user.uid ?
                 <button type="submit" className="btn btn-danger mt-2">Submit Review</button>
                 :
-                <Link to="/login" className="btn btn-warning mt-2">Please login to add review</Link>
+                <Link to="/login" className="btn btn-warning mt-2 fw-semibold">Login first to add review</Link>
             }
           </div>
         </form>

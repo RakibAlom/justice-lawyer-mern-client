@@ -7,7 +7,6 @@ const ReviewUpdate = () => {
   const review = useLoaderData()
   const navigate = useNavigate();
   const { _id } = review;
-  console.log(review)
   const [reviews, setReviews] = useState([]);
 
   const handleUpdateReview = event => {
@@ -19,7 +18,7 @@ const ReviewUpdate = () => {
       review
     }
 
-    fetch(`http://localhost:5000/reviews/${_id}`, {
+    fetch(`https://justice-lawyer-server.vercel.app/reviews/${_id}`, {
       method: 'PATCH',
       headers: {
         'content-type': 'application/json',
@@ -29,7 +28,6 @@ const ReviewUpdate = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         if (data.modifiedCount > 0) {
           const remaining = reviews.filter(item => item._id !== _id);
           const approving = reviews.find(item => item._id === _id);

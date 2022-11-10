@@ -2,18 +2,30 @@ import React, { useEffect, useState } from 'react';
 import { Button, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import BlogCard from '../../Blog/BlogCard/BlogCard';
+import Spinner from 'react-bootstrap/Spinner'
 
 const HomeBlogs = () => {
   const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true)
   useEffect(() => {
-    fetch(`http://localhost:5000/blogs-limit`)
+    setLoading(true)
+    fetch(`https://justice-lawyer-server.vercel.app/blogs-limit`)
       .then(res => res.json())
-      .then(data => setBlogs(data));
+      .then(data => {
+        setBlogs(data)
+        setLoading(false)
+      });
   }, []);
   return (
     <section className='latest-blogs py-5 bg-light'>
       <Container>
-        <h1 className='text-center mb-5'>Our Latest Blog</h1>
+        <h1 className='text-center mb-5 fw-bold text-danger'>My Advices</h1>
+        {
+          loading &&
+          <div className='text-center py-4'>
+            <Spinner animation="border" variant="danger" />
+          </div>
+        }
         <div className="row">
           {
             blogs.map(blog =>

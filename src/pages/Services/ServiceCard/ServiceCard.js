@@ -16,7 +16,7 @@ const ServiceCard = ({ service }) => {
         </PhotoProvider>
 
         <Card.Body>
-          <Link to={`/legal-services/${service._id}`} className="text-decoration-none text-danger"><Card.Title>{service.name}</Card.Title></Link>
+          <Link to={`/services/${service._id}`} className="text-decoration-none text-danger"><Card.Title>{service.name}</Card.Title></Link>
           <Card.Text className='text-secondary'>
             {service.serviceDetails.slice(0, 90)}...
           </Card.Text>
@@ -29,7 +29,7 @@ const ServiceCard = ({ service }) => {
             </div>
           </div>
           <div className="see-details-button mt-3">
-            <Link to={`/legal-services/${service._id}`}><Button variant="danger" className='rounded-1 w-100'>See Details</Button></Link>
+            <Link to={`/services/${service._id}`}><Button variant="danger" className='rounded-1 w-100'>See Details</Button></Link>
           </div>
         </Card.Body>
       </Card>
