@@ -2,6 +2,7 @@ import React from 'react';
 import { Container } from 'react-bootstrap';
 import { FaStar } from 'react-icons/fa';
 import { useLoaderData } from 'react-router-dom';
+import ServiceReviews from '../ServiceReviews/ServiceReviews';
 import ServiceSidebar from '../ServiceSidebar/ServiceSidebar';
 
 const ServiceDetails = () => {
@@ -24,6 +25,9 @@ const ServiceDetails = () => {
             <div>
               <div dangerouslySetInnerHTML={{ __html: service.serviceDetails }} />
             </div>
+          </div>
+          <div className='py-4'>
+            <ServiceReviews></ServiceReviews>
           </div>
         </div>
         <div className="col-lg-3 col-md-4">
