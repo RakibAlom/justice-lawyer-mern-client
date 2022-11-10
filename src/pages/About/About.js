@@ -11,7 +11,7 @@ const About = () => {
             <img className='img-fluid rounded-3 my-2 w-100' src={AboutImg} alt="Justic Law Attorney in Bangladesh" />
           </div>
           <div className="col-md-6">
-            <h1 className='text-danger fw-bold'>Justic Law Attorney in Bangladesh</h1>
+            <h1 className='text-danger fw-bold'>Justic Lawyer Rakib in Bangladesh</h1>
             <p>Whether you’re charged with a DUI, misdemeanor, or felony, the prospect of facing trial is stressful. Worse, there’s also the possibility of jail time if things don’t go well for you in court.</p>
 
             <p>To help you face these legal adversities, you need an attorney who can work on an effective defense strategy and make sure your civil rights are upheld throughout the process.</p>

@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import { FaAngleDoubleRight, FaMapMarkerAlt, FaPhoneAlt, FaRegClock } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
+  const [services, setservices] = useState([]);
+  useEffect(() => {
+    fetch('http://localhost:5000/services')
+      .then(res => res.json())
+      .then(data => setservices(data))
+  }, [services]);
   return (
     <footer className='bg-dark text-light'>
       <Container>
@@ -12,29 +18,31 @@ const Footer = () => {
             <h3>Contact Us</h3>
             <p>Justice Lawyer - Law Defender</p>
             <div className="list-group">
-              <Link to='/' className="nav-link mb-2"><FaMapMarkerAlt></FaMapMarkerAlt> 4124 Erie Street, Willoughby, OH 44094</Link>
-              <Link to='/' className="nav-link mb-2"><FaPhoneAlt></FaPhoneAlt> +88 01623-405027</Link>
+              <span className="nav-link mb-2"><FaMapMarkerAlt></FaMapMarkerAlt> Sylhet - 3100, Bangladesh</span>
+              <a href='tel:+8801623405027' className="nav-link mb-2"><FaPhoneAlt></FaPhoneAlt> +88 01623-405027</a>
               <span className="nav-link mb-2"><FaRegClock></FaRegClock> Open: Sun-Thu: 9am – 5pm</span>
             </div>
           </div>
           <div className="col-lg-3 col-6 my-4">
             <h3>Services</h3>
             <div className="list-group">
-              <Link to='/' className="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Elder Law</Link>
-              <Link to='/' className="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Elder Law</Link>
-              <Link to='/' className="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Elder Law</Link>
-              <Link to='/' className="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Elder Law</Link>
-              <Link to='/' className="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Elder Law</Link>
+              {
+                services.map(servcie =>
+                  <Link to={`/legal-services/${servcie._id}`} className="nav-link mb-2" aria-current="true" key={servcie._id}>
+                    <FaAngleDoubleRight></FaAngleDoubleRight> {servcie.name}
+                  </Link>
+                )
+              }
             </div>
           </div>
           <div className="col-lg-3 col-6 my-4">
             <h3>Quick Links</h3>
             <div className="list-group">
               <Link to='/' className="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Home</Link>
-              <Link to='/' className="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Legal Services</Link>
-              <Link to='/' className="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Blog</Link>
-              <Link to='/' className="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> About</Link>
-              <Link to='/' className="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Privacy Policy</Link>
+              <Link to='/legal-services' className="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Legal Services</Link>
+              <Link to='/blog' className="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Blog</Link>
+              <Link to='/about' className="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> About</Link>
+              <Link to='/privacy-policy' className="nav-link mb-2"><FaAngleDoubleRight></FaAngleDoubleRight> Privacy Policy</Link>
             </div>
           </div>
           <div className="col-lg-3 col-md-6 my-4">

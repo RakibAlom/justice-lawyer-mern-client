@@ -7,6 +7,7 @@ import { FaFacebookF, FaInstagram, FaTwitter, FaLinkedinIn, FaYoutube, FaUserCir
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
+import Logo from '../../../images/justice-lawyer-logo.png';
 
 const MainMenu = () => {
   const { user, logOut } = useContext(AuthContext)
@@ -18,15 +19,15 @@ const MainMenu = () => {
   }
   return (
     <div>
-      <Navbar collapseOnSelect expand="md" bg="light" variant="light" className='d-none d-md-block'>
+      <Navbar collapseOnSelect expand="md" bg="light" variant="light" className='d-none d-md-block border-bottom'>
         <Container>
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto social-icon-links">
-              <Nav.Link href="#"><FaFacebookF></FaFacebookF></Nav.Link>
-              <Nav.Link href="#"><FaInstagram></FaInstagram></Nav.Link>
-              <Nav.Link href="#"><FaTwitter></FaTwitter></Nav.Link>
-              <Nav.Link href="#"><FaLinkedinIn></FaLinkedinIn></Nav.Link>
-              <Nav.Link href="#"><FaYoutube></FaYoutube></Nav.Link>
+              <Nav.Link href="https://www.facebook.com/rakibalomprogrammer" target="_blank"><FaFacebookF></FaFacebookF></Nav.Link>
+              <Nav.Link href="https://www.instagram.com/rakib.alom/" target="_blank"><FaInstagram></FaInstagram></Nav.Link>
+              <Nav.Link href="https://twitter.com/rakibalom94" target="_blank"><FaTwitter></FaTwitter></Nav.Link>
+              <Nav.Link href="https://www.linkedin.com/in/rakibalomprogrammer/" target="_blank"><FaLinkedinIn></FaLinkedinIn></Nav.Link>
+              <Nav.Link href="https://www.youtube.com/c/StorialTech" target="_blank"><FaYoutube></FaYoutube></Nav.Link>
             </Nav>
             <Nav className='ms-auto fw-semibold'>
               {
@@ -61,14 +62,14 @@ const MainMenu = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className='py-3 fw-semibold'>
+      <Navbar collapseOnSelect expand="lg" bg="light" variant="light" className='py-3 fw-semibold'>
         <Container>
           <Navbar.Brand>
             <Link to='/' className='nav-link'>
-              Justice Lawyer
+              <img className='img-fluid' src={Logo} alt="Justice Lawyer" style={{ height: "40px" }} /> <span style={{ fontSize: "24px", fontWeight: "bold" }}>Justice Lawyer</span>
             </Link>
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Toggle aria-controls="basic-navbar-nav" className='shadow-none' />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mx-auto">
               <NavLink className="nav-link" end to="/">Home</NavLink>
@@ -94,8 +95,8 @@ const MainMenu = () => {
                   </>
               }
             </Nav>
-            <Nav.Link href="#">
-              <button className='btn btn-danger rounded-1 fw-semibold'>Schedule A Consulation</button>
+            <Nav.Link href="#" target="_blank">
+              <button className='btn btn-danger rounded-1 fw-semibold mt-3 mt-md-0'>Schedule A Consulation</button>
             </Nav.Link>
           </Navbar.Collapse>
         </Container>

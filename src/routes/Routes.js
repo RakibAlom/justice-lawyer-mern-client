@@ -7,6 +7,7 @@ import About from '../pages/About/About';
 import BlogDetails from '../pages/Blog/BlogDetails/BlogDetails';
 import Blogs from '../pages/Blog/Blogs';
 import Home from '../pages/Home/Home';
+import NotFound404 from '../pages/Other/NotFound/NotFound404';
 import CreateService from '../pages/Services/CreateService/CreateService';
 import ServiceDetails from '../pages/Services/ServiceDetails/ServiceDetails';
 import Services from '../pages/Services/Services';
@@ -43,6 +44,7 @@ export const routes = createBrowserRouter([
       { path: '/about', element: <About></About> },
       { path: '/login', element: <Login></Login> },
       { path: '/register', element: <Register></Register> },
+      { path: '*', element: <NotFound404></NotFound404> }
     ]
   }
 ])

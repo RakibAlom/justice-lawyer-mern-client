@@ -11,7 +11,7 @@ const HomeBlogs = () => {
       .then(data => setBlogs(data));
   }, []);
   return (
-    <section className='latest-blogs py-5'>
+    <section className='latest-blogs py-5 bg-light'>
       <Container>
         <h1 className='text-center mb-5'>Our Latest Blog</h1>
         <div className="row">
@@ -25,7 +25,7 @@ const HomeBlogs = () => {
         </div>
         <div className='text-center mt-4'>
           <Link to='/blog'>
-            <Button variant='outline-danger' className='btn btn-lg rounded-1 px-5'>All Blogs</Button>
+            <Button variant='outline-danger' className='btn btn-lg rounded-1 px-5'>See All</Button>
           </Link>
         </div>
       </Container>

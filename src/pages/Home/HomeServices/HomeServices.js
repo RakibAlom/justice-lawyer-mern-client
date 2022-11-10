@@ -1,23 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Container } from 'react-bootstrap';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ServiceCard from '../../Services/ServiceCard/ServiceCard';
 
 const HomeServices = () => {
-  const services = useLoaderData();
+  const [services, setservices] = useState([]);
+  useEffect(() => {
+    fetch('http://localhost:5000/services')
+      .then(res => res.json())
+      .then(data => setservices(data))
+  }, [services]);
   return (
     <>
       <section className='home-services-section py-5'>
         <Container>
           <h1 className='text-center mb-5'>Legal Services</h1>
           <div className="row">
-            {/* <div className="col-lg-4 mb-4">
-              <ServiceCard></ServiceCard>
-            </div> */}
+            {
+              services.map(service =>
+                <div className="col-lg-4 mb-4" key={service._id}>
+                  <ServiceCard service={service}></ServiceCard>
+                </div>
+              )
+            }
           </div>
           <div className='text-center mt-4'>
-            <Link to='/blog'>
-              <Button variant='outline-danger' className='btn btn-lg rounded-1 px-5'>All Services</Button>
+            <Link to='/legal-services'>
+              <Button variant='outline-danger' className='btn btn-lg rounded-1 px-5'>See All</Button>
             </Link>
           </div>
         </Container>
