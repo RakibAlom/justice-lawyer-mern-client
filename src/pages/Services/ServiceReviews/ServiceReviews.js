@@ -1,9 +1,64 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import toast from 'react-hot-toast';
 
-const ServiceReviews = () => {
+const ServiceReviews = ({ service }) => {
   const { user } = useContext(AuthContext)
+  const [reviews, setReviews] = useState([]);
+  useEffect(() => {
+    fetch('http://localhost:5000/reviews')
+      .then(res => res.json())
+      .then(data => {
+        setReviews(data)
+        console.log(data)
+      })
+  }, []);
+
+  const handleSubmitReview = event => {
+    event.preventDefault();
+    const form = event.target;
+    const username = user.displayName;
+    const uid = user.uid;
+    const useremail = user.email;
+    const userImage = user.photoURL;
+    const serviceId = service._id;
+    const serviceName = service.name;
+    const review = form.review.value;
+
+    const newReview = {
+      uid,
+      username,
+      useremail,
+      userImage,
+      serviceId,
+      serviceName,
+      review
+    }
+
+    console.log(newReview)
+
+    fetch('http://localhost:5000/reviews', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `Bearer ${localStorage.getItem('access-token')}`
+      },
+      body: JSON.stringify(reviews)
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.acknowledged) {
+          toast.success('Your Review Added On The Service!')
+        }
+        form.reset()
+      })
+      .catch(err => {
+        toast.error('Something is wrong!')
+        console.error(err)
+      })
+  }
+
   return (
     <div className="reviews-area">
       <div className="widget-header-2 position-relative">
@@ -11,7 +66,7 @@ const ServiceReviews = () => {
         <hr />
       </div>
       <div className="review-form">
-        <form>
+        <form onSubmit={handleSubmitReview}>
           <div className="row">
             <div className="col-12">
               <div className="form-group">
@@ -24,27 +79,40 @@ const ServiceReviews = () => {
               user && user.uid ?
                 <button type="submit" className="btn btn-danger mt-2">Submit Review</button>
                 :
-                <Link to="/login" className="btn btn-warning mt-2">Login First For Review</Link>
+                <Link to="/login" className="btn btn-warning mt-2">Please login to add review</Link>
             }
           </div>
         </form>
 
         <div className="review-list">
-          <div className="single-review mt-5 justify-content-between d-flex">
-            <div className="justify-content-between d-flex w-100">
-              <div className="thumb">
-                <img src="https://yt3.ggpht.com/7N5cpwt-tYzIANIuK-uLNshAdNDP5L_WZIIbnSboRAEwMUwF4F1m8VALc7TMKSsEvOqdpBRAKg=s900-c-k-c0x00ffffff-no-rj" alt="" style={{ height: "30px" }} />
-                <span className='ms-2 fw-semibold'>User Name</span>
+          {
+            reviews.filter(item => item.serviceId === service._id).map(review =>
+              <div className="single-review mt-5 shadow rounded-1 p-3" key={review._id}>
+                <div className="justify-content-between d-flex w-100">
+                  <div className="thumb">
+                    <img className='rounded' src={review.userImage} alt={review.username} style={{ height: "30px" }} />
+                    <span className='ms-2 fw-semibold'>{review.username}</span>
+                  </div>
+                  <div>
+                    {
+                      user && user.uid === review.uid ?
+                        <>
+                          <Link to="/" className="text-primary  me-2">edit</Link>
+                          <Link to="/" className="text-danger">delete</Link>
+                        </>
+                        : null
+                    }
+
+                  </div>
+                </div>
+                <div className="pt-3">
+                  <p className="review m-0">
+                    {review.review}
+                  </p>
+                </div>
               </div>
-              <div>
-                <Link to="/" className="text-primary  me-2">edit</Link>
-                <Link to="/" className="text-danger mr-2">delete</Link>
-              </div>
-            </div>
-            <div className="desc">
-              <p className="review"></p>
-            </div>
-          </div>
+            )
+          }
         </div>
       </div>
     </div>

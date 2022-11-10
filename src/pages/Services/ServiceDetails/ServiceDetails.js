@@ -27,7 +27,7 @@ const ServiceDetails = () => {
             </div>
           </div>
           <div className='py-4'>
-            <ServiceReviews></ServiceReviews>
+            <ServiceReviews service={service}></ServiceReviews>
           </div>
         </div>
         <div className="col-lg-3 col-md-4">

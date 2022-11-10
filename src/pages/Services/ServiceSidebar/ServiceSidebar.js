@@ -5,12 +5,12 @@ import { NavLink } from 'react-router-dom';
 import './ServiceSidebar.css'
 
 const ServiceSidebar = () => {
-  const [services, setservices] = useState([]);
+  const [services, setServices] = useState([]);
   useEffect(() => {
     fetch('http://localhost:5000/services')
       .then(res => res.json())
-      .then(data => setservices(data))
-  }, [services]);
+      .then(data => setServices(data))
+  }, []);
   return (
     <div className='sticky-md-top py-4'>
       <h4>Legal Services</h4>
