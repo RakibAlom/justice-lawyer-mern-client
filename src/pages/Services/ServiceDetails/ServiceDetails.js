@@ -1,13 +1,14 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
+import { Container, Spinner } from 'react-bootstrap';
 import { FaStar } from 'react-icons/fa';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigation } from 'react-router-dom';
 import ServiceReviews from '../ServiceReviews/ServiceReviews';
 import ServiceSidebar from '../ServiceSidebar/ServiceSidebar';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { Helmet } from "react-helmet";
 const ServiceDetails = () => {
   const service = useLoaderData()
+  const state = useNavigation();
   return (
     <Container>
       <Helmet>
@@ -18,6 +19,11 @@ const ServiceDetails = () => {
       <div className="row">
         <div className="col-lg-9 col-md-8 py-4">
           <div className='shadow p-3 p-md-4 service-details rounded-1'>
+            {state === 'loading' &&
+              <div className='text-center py-4'>
+                <Spinner animation="border" variant="danger" />
+              </div>
+            }
             <h2>{service.name}</h2>
             <PhotoProvider>
               <PhotoView src={service.serviceThumbnail}>
