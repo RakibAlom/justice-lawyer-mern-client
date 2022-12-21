@@ -11,7 +11,7 @@ const ServiceCard = ({ service }) => {
       <Card className={`rounded-1 border-0 shadow`}>
         <PhotoProvider>
           <PhotoView src={service.serviceThumbnail}>
-            <Card.Img className='rounded-0' variant="top" src={service.serviceThumbnail} />
+            <Card.Img className='rounded-0' variant="top" style={{ height: '280px' }} src={service.serviceThumbnail} />
           </PhotoView>
         </PhotoProvider>
 

@@ -87,7 +87,7 @@ const ServiceReviews = ({ service }) => {
   return (
     <div className="reviews-area">
       <div className="widget-header-2 position-relative">
-        <h5 className="mt-5">Reviews ({reviews.length})</h5>
+        <h5 className="mt-5">Reviews ({reviews.filter(item => item.serviceId === service._id).length})</h5>
         <hr />
       </div>
       <div className="review-form">

@@ -11,10 +11,10 @@ const HomeAbout = () => {
           <div className="col-md-6">
             <p className='text-danger fw-bold'>Speak with Justice Lawyer Today</p>
             <h1 className='fw-bold mb-4'>Make Choices With <br />Confidence</h1>
-            <button className='btn btn-lg btn-danger rounded-1'>Call to Schedule</button>
+            <a href="tel:+8801623405027" className='btn btn-lg btn-danger rounded-1'>Call to Schedule</a>
           </div>
           <div className="col-md-6 text-center">
-            <img className='img-fluid' src="https://cdn-fndag.nitrocdn.com/edELlPyUSSkRNMXGiatDSHEqUOTleyNe/assets/static/optimized/rev-1256eb6/wp-content/uploads/2022/06/about-img.png" alt="" />
+            <img className='img-fluid' src="https://familyfirstfirm.com/wp-content/uploads/2022/06/about-img.png" alt="Speak with Justice Lawyer" />
           </div>
         </div>
       </Container>

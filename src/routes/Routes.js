@@ -39,8 +39,7 @@ export const routes = createBrowserRouter([
       },
       {
         path: '/blog',
-        element: <Blogs></Blogs>,
-        loader: () => fetch(`https://justice-lawyer-server.vercel.app/blogs`)
+        element: <Blogs></Blogs>
       },
       {
         path: '/blog/:slug',

@@ -1,6 +1,8 @@
 # Justice Laywer: Your Defender Hero
 Justice Laywer provides clients with comprehensive legal representation from trial to appeal, if needed.
 
+**Live Server:** https://justice-lawyer-server.vercel.app/
+
 ## Live Site
 **Website Link:** https://justice-lawyer.web.app/
 

@@ -8,6 +8,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
 import Logo from '../../../images/justice-lawyer-logo.png';
+import './MainMenu.css'
 
 const MainMenu = () => {
   const { user, logOut } = useContext(AuthContext)
@@ -95,7 +96,7 @@ const MainMenu = () => {
                   </>
               }
             </Nav>
-            <Nav.Link href="#" target="_blank">
+            <Nav.Link href="tel:+8801623405027">
               <button className='btn btn-danger rounded-1 fw-semibold mt-3 mt-md-0'>Schedule A Consulation</button>
             </Nav.Link>
           </Navbar.Collapse>

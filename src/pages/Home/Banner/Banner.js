@@ -14,7 +14,7 @@ const Banner = () => {
               <p className='text-warning'>I'm Excited To Meet You!</p>
               <h1 className='fw-bold'>Protecting Loved Ones & Legacies</h1>
               <p className='py-2'>Are you looking to ensure legal protection and happy futures for yourself and your loved ones? I'm here to help you discover all your options and make decisions with confidence.</p>
-              <button className='btn btn-danger btn-lg px-3 px-md-4 fw-semibold text-light rounded-1'>Schedule Your Free Assessment Today</button>
+              <a href="tel:+8801623405027" className='btn btn-danger btn-lg px-3 px-md-4 fw-semibold text-light rounded-1'>Schedule Your Free Assessment Today</a>
             </div>
           </Container>
         </Card.ImgOverlay>
